@@ -14,19 +14,22 @@ MathNumberToken::MathNumberToken(double value) {
 
 MathNumberToken* MathNumberToken::tryParseNumberToken(string data, int& index) {
 
+
+
 	string temp("");
-	while(((data[index] >= '0') && (data[index] <= '9')) || (data[index] == '.')) {
+	while (((data[index] >= '0') && (data[index] <= '9'))
+			|| (data[index] == '.')) {
 		temp += data[index++];
 	}
 
-	if(temp.length() > 0) {
+	if (temp.length() > 0) {
 		MathNumberToken* x = new MathNumberToken();
 		x->value = atof(temp.data());
 		return x;
 
 	} else {
 
-		if(data[index] == 'x') {
+		if (data[index] == 'x') {
 			index++;
 			MathNumberToken* x = new MathNumberToken();
 			x->value = 0.0;
@@ -40,7 +43,6 @@ MathNumberToken* MathNumberToken::tryParseNumberToken(string data, int& index) {
 
 }
 
-int MathNumberToken::getType()
-{
+int MathNumberToken::getType() {
 	return MathNumberToken::TYPE;
 }

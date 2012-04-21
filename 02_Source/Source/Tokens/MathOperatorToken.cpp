@@ -1,119 +1,71 @@
-#include "..\Operators\DefaultOperators.h"
-#include "..\Functions\TrigFunctions.h"
-#include "..\Functions\LogFunctions.h"
+#include <string>
+#include "..\Operations\BasicOperations.h"
+#include "..\Operations\LogOperations.h"
+#include "..\Operations\TrigOperations.h"
+
 #include "MathOperatorToken.h"
 
-MathOperatorToken* MathOperatorToken::tryParseOperatorToken(string data,
-		int& index) {
+const MathOperatorSignature MathOperatorToken::operations[] = {
+		// ident, params, precendence, infix, reference
+		// standard operations
+		{ "+",    2,  1, true,  BasicOperations::Add },
+		{ "-",    2,  1, true,  BasicOperations::Sub },
+		{ "*",    2,  2, true,  BasicOperations::Mul },
+		{ "/",    2,  2, true,  BasicOperations::Div },
+		{ "^",    2,  3, true,  BasicOperations::Pow },
+		// logarithmic operations
+		{ "log",  2, -1, false, LogOperations::Log },
+		{ "ln",   1, -1, false, LogOperations::Ln },
+		// trigonometric operations
+		{ "sin",  1, -1, false, TrigOperations::Sin },
+		{ "asin", 1, -1, false, TrigOperations::ASin },
+		{ "cos",  1, -1, false, TrigOperations::Cos },
+		{ "acos", 1, -1, false, TrigOperations::ACos },
+		{ "tan",  1, -1, false, TrigOperations::Tan },
+		{ "atan", 1, -1, false, TrigOperations::ATan },
+		{ "",     0,  0, false, 0 }
+};
 
-	// operators
-	if (data[index] == '+') {
-		index++;
-		MathOperatorToken *x = new MathOperatorToken();
-		x->symbol = '+';
-		x->params = 2;
-		x->evaluate = DefaultOperators::Add;
-		x->isFunction = false;
-		return x;
-	}
-	if (data[index] == '-') {
-		index++;
-		MathOperatorToken *x = new MathOperatorToken();
-		x->symbol = '-';
-		x->params = 2;
-		x->evaluate = DefaultOperators::Sub;
-		x->isFunction = false;
-		return x;
-	}
-	if (data[index] == '*') {
-		index++;
-		MathOperatorToken *x = new MathOperatorToken();
-		x->symbol = '*';
-		x->params = 2;
-		x->evaluate = DefaultOperators::Mul;
-		x->isFunction = false;
-		return x;
-	}
-	if (data[index] == '/') {
-		index++;
-		MathOperatorToken *x = new MathOperatorToken();
-		x->symbol = '/';
-		x->params = 2;
-		x->evaluate = DefaultOperators::Div;
-		x->isFunction = false;
-		return x;
-	}
-	if (data[index] == '^') {
-		index++;
-		MathOperatorToken *x = new MathOperatorToken();
-		x->symbol = '^';
-		x->params = 2;
-		x->evaluate = DefaultOperators::Pow;
-		x->isFunction = false;
-		return x;
-	}
+MathOperatorToken* MathOperatorToken::tryParseOperatorToken(string data, int &index) {
 
-	// functions
 	string temp("");
-	while (((data[index] >= 'a') && (data[index] >= 'z'))
-			|| ((data[index] >= 'A') && (data[index] >= 'Z'))) {
-
+	while (((data[index] >= 'a') && (data[index] <= 'z'))
+			|| ((data[index] >= 'A') && (data[index] <= 'Z'))) {
 		temp += data[index++];
 	}
 
-	if (temp == "sin") {
-		MathOperatorToken *x1 = new MathOperatorToken();
-		x1->symbol = 0;
-		x1->params = 1;
-		x1->evaluate = TrigFunctions::Sin;
-		x1->isFunction = true;
-		return x1;
+	if (temp.size() == 0) {
+		temp = data[index];
 	}
 
-	if (temp == "cos") {
-		MathOperatorToken *x2 = new MathOperatorToken();
-		x2->symbol = 0;
-		x2->params = 1;
-		x2->evaluate = TrigFunctions::Cos;
-		x2->isFunction = true;
-		return x2;
-	}
+	// find operation...
+	const MathOperatorSignature *func = operations;
+	while (func->Ref != 0) {
+		if (temp.compare(func->Ident) == 0) {
 
-	if (temp == "log") {
-		MathOperatorToken *x2 = new MathOperatorToken();
-		x2->symbol = 0;
-		x2->params = 2;
-		x2->evaluate = LogFunctions::Log;
-		x2->isFunction = true;
-		return x2;
+			MathOperatorToken *mot = new MathOperatorToken();
+			mot->function = func;
+			mot->params = func->Params;
+			mot->evaluate = func->Ref;
+			mot->isFunction = !func->Infix;
+
+			if (func->Ident.length() == 1) {
+				index++;
+			}
+
+			return mot;
+		}
+		func++;
 	}
 
 	return NULL;
 }
 
-int calcPrecedence(char c) {
-	switch (c) {
-	case '+':
-	case '-':
-		return 1;
-
-	case '*':
-	case '/':
-		return 2;
-
-	case '^':
-		return 3;
-
-	default:
-		return -1;
-	}
-}
-
 bool MathOperatorToken::isPrecendent(MathOperatorToken *a,
 		MathOperatorToken *b) {
 
-	int p1 = calcPrecedence(a->symbol);
-	int p2 = calcPrecedence(b->symbol);
+	int p1 = a->function->Precendence;
+	int p2 = b->function->Precendence;
 	return (p1 > p2);
 }
 

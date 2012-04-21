@@ -1,8 +1,9 @@
-#ifndef DEFAULTOPERATORS_H_
-#define DEFAULTOPERATORS_H_
+#ifndef _BASIC_OPERATIONS_H_
+#define _BASIC_OPERATIONS_H_
 
-class DefaultOperators {
+class BasicOperations {
 
+private:
 public:
 	static double Add(double*, int);
 	static double Sub(double*, int);
@@ -12,4 +13,4 @@ public:
 
 };
 
-#endif /* DEFAULTOPERATORS_H_ */
+#endif /* _BASIC_OPERATIONS_H_ */

@@ -1,7 +1,7 @@
 #include <cmath>
-#include "DefaultOperators.h"
+#include "BasicOperations.h"
 
-double DefaultOperators::Add(double *params, int paramsCount) {
+double BasicOperations::Add(double *params, int paramsCount) {
 	if(paramsCount == 2) {
 		return params[0] + params[1];
 	} else {
@@ -9,7 +9,7 @@ double DefaultOperators::Add(double *params, int paramsCount) {
 	}
 }
 
-double DefaultOperators::Sub(double *params, int paramsCount) {
+double BasicOperations::Sub(double *params, int paramsCount) {
 	if(paramsCount == 2) {
 		return params[0] - params[1];
 	} else {
@@ -17,7 +17,7 @@ double DefaultOperators::Sub(double *params, int paramsCount) {
 	}
 }
 
-double DefaultOperators::Mul(double *params, int paramsCount) {
+double BasicOperations::Mul(double *params, int paramsCount) {
 	if(paramsCount == 2) {
 		return params[0] * params[1];
 	} else {
@@ -25,7 +25,7 @@ double DefaultOperators::Mul(double *params, int paramsCount) {
 	}
 }
 
-double DefaultOperators::Div(double *params, int paramsCount) {
+double BasicOperations::Div(double *params, int paramsCount) {
 	if(paramsCount == 2) {
 		return params[0] / params[1];
 	} else {
@@ -33,7 +33,7 @@ double DefaultOperators::Div(double *params, int paramsCount) {
 	}
 }
 
-double DefaultOperators::Pow(double *params, int paramsCount) {
+double BasicOperations::Pow(double *params, int paramsCount) {
 	if(paramsCount == 2) {
 		return pow(params[0], params[1]);
 	} else {

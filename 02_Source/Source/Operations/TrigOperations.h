@@ -1,8 +1,9 @@
-#ifndef _TRIG_FUNCTIONS_H_
-#define _TRIG_FUNCTIONS_H_
+#ifndef _TRIG_OPERATIONS_H_
+#define _TRIG_OPERATIONS_H_
 
-class TrigFunctions {
+class TrigOperations {
 
+private:
 public:
 	static double Sin(double*, int);
 	static double ASin(double*, int);
@@ -13,4 +14,4 @@ public:
 
 };
 
-#endif /* _TRIG_FUNCTIONS_H_ */
+#endif /* _TRIG_OPERATIONS_H_ */
