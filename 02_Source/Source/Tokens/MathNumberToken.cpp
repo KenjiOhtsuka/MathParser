@@ -2,6 +2,16 @@
 #include <string>
 #include "MathNumberToken.h"
 
+MathNumberToken::MathNumberToken() {
+	this->value = 0.0;
+	this->isVariable = false;
+}
+
+MathNumberToken::MathNumberToken(double value) {
+	this->value = value;
+	this->isVariable = false;
+}
+
 MathNumberToken* MathNumberToken::tryParseNumberToken(string data, int& index) {
 
 	string temp("");
@@ -10,12 +20,21 @@ MathNumberToken* MathNumberToken::tryParseNumberToken(string data, int& index) {
 	}
 
 	if(temp.length() > 0) {
-
 		MathNumberToken* x = new MathNumberToken();
 		x->value = atof(temp.data());
 		return x;
 
 	} else {
+
+		if(data[index] == 'x') {
+			index++;
+			MathNumberToken* x = new MathNumberToken();
+			x->value = 0.0;
+			x->isVariable = true;
+			return x;
+
+		}
+
 		return NULL;
 	}
 
@@ -23,5 +42,5 @@ MathNumberToken* MathNumberToken::tryParseNumberToken(string data, int& index) {
 
 int MathNumberToken::getType()
 {
-	return 1;
+	return MathNumberToken::TYPE;
 }

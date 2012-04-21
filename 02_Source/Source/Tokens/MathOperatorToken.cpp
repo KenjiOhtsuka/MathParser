@@ -75,5 +75,5 @@ bool MathOperatorToken::isPrecendent(MathOperatorToken *a, MathOperatorToken *b)
 
 int MathOperatorToken::getType()
 {
-	return 2;
+	return MathOperatorToken::TYPE;
 }

@@ -9,6 +9,8 @@ class MathOperatorToken: public MathToken {
 private:
 	char symbol;
 public:
+	static const int TYPE = 2;
+
 	int params;
 	double (*evaluate)(double*, int);
 	int getType();

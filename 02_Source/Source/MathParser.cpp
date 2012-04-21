@@ -10,7 +10,7 @@
 
 void MathParser::parse(string data) {
 
-	expression = new queue<MathToken*>();
+	expression = new vector<MathToken*>();
 	stack<MathToken*> *operatorStack = new stack<MathToken*>();
 	string temp("");
 
@@ -23,26 +23,26 @@ void MathParser::parse(string data) {
 		tok = MathSpecialToken::tryParseSpecialToken(data, index);
 		if (tok != NULL) {
 
-			MathSpecialToken *spez = (MathSpecialToken*)tok;
-			if(spez->value == '(') {
+			MathSpecialToken *spez = (MathSpecialToken*) tok;
+			if (spez->value == '(') {
 				operatorStack->push(tok);
 				continue;
 			}
-			if(spez->value == ')') {
+			if (spez->value == ')') {
 				// pop operators until '(' found...
 				MathToken *xx;
 				do {
-					xx = operatorStack->top(); operatorStack->pop();
-					if(xx->getType() != 5) {
-						expression->push(xx);
+					xx = operatorStack->top();
+					operatorStack->pop();
+					if (xx->getType() != 5) {
+						expression->push_back(xx);
 					} else {
 						break;
 					}
 
-				} while(true);
+				} while (true);
 
 			}
-
 
 		}
 
@@ -50,7 +50,7 @@ void MathParser::parse(string data) {
 		tok = MathNumberToken::tryParseNumberToken(data, index);
 		if (tok != NULL) {
 			// push to output stack
-			expression->push(tok);
+			expression->push_back(tok);
 			continue;
 		}
 
@@ -65,7 +65,7 @@ void MathParser::parse(string data) {
 				if (MathOperatorToken::isPrecendent((MathOperatorToken*) tok,
 						onStack) == false) {
 					operatorStack->pop();
-					expression->push(onStack);
+					expression->push_back(onStack);
 				} else
 					break;
 			}
@@ -78,45 +78,61 @@ void MathParser::parse(string data) {
 	while (operatorStack->size() > 0) {
 		MathOperatorToken *onStack = (MathOperatorToken*) operatorStack->top();
 		operatorStack->pop();
-		expression->push(onStack);
+		expression->push_back(onStack);
 	}
 }
 
 double MathParser::evaluate(double x) {
 
+	// init stack
 	stack<MathToken*> *temp = new stack<MathToken*>();
 
-	while (expression->size() > 0) {
+	unsigned int index = 0;
+	while (index < expression->size()) {
 
-		// number -> stack
-		// operator -> execute
+		// get token
+		MathToken *token = expression->at(index++);
 
-		MathToken *tok = expression->front();
-		expression->pop();
+		// if token is a number -> push to stack
+		if (token->getType() == MathNumberToken::TYPE) {
 
-		if (tok->getType() == 2) {
-			int size = 2;
-			double *list = new double[size]();
-			for (int i = 1; i >= 0 ; i--) {
-				list[i] = ((MathNumberToken*)(temp->top()))->value;
-				temp->pop();
+			// cast
+			MathNumberToken *mnt = (MathNumberToken*)token;
+
+			// if token is a variable, push x to stack
+			// if token is no variable, push copy to stack
+			if(mnt->isVariable == true) {
+				temp->push(new MathNumberToken(x));
+			} else {
+				temp->push(new MathNumberToken(*mnt));
 			}
-			double result = ((MathOperatorToken*)tok)->evaluate(list, size);
-
-			MathNumberToken *newnumber= new MathNumberToken();
-			newnumber->value = result;
-			temp->push(newnumber);
-
-			continue;
 		}
 
-		if (tok->getType() == 1) {
-			temp->push(tok);
-			continue;
-		}
+		// if token is an operator -> execute
+		if (token->getType() == MathOperatorToken::TYPE) {
 
+			// cast
+			MathOperatorToken *mot = (MathOperatorToken*)token;
+
+			// pop 2 numbers from stack
+			MathNumberToken *value1 = (MathNumberToken*)temp->top(); temp->pop();
+			MathNumberToken *value2 = (MathNumberToken*)temp->top(); temp->pop();
+			double list[2] = {value2->value, value1->value};
+			delete value1;
+			delete value2;
+
+			// execute operation
+			double result = mot->evaluate(list, 2);
+
+			// push result to stack
+			temp->push(new MathNumberToken(result));
+		}
 	}
 
-	return ((MathNumberToken*)(temp->top()))->value;
+	// the last element on the stack is the final result
+	MathNumberToken *last = (MathNumberToken*)temp->top(); temp->pop();
+	double final = last->value;
+	delete last;
 
+	return final;
 }
