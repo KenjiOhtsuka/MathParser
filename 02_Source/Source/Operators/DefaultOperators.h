@@ -1,10 +1,3 @@
-/*
- * DefaultOperators.h
- *
- *  Created on: 21.04.2012
- *      Author: Max Muster
- */
-
 #ifndef DEFAULTOPERATORS_H_
 #define DEFAULTOPERATORS_H_
 

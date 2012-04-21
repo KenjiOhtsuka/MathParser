@@ -4,6 +4,7 @@
 #include "Tokens\MathFunctionToken.h"
 #include "Tokens\MathNumberToken.h"
 #include "Tokens\MathOperatorToken.h"
+#include "Tokens\MathSpecialToken.h"
 
 #include "MathParser.h"
 
@@ -17,6 +18,33 @@ void MathParser::parse(string data) {
 
 	int index = 0;
 	while (index < data.length()) {
+
+		// parse special tokens...
+		tok = MathSpecialToken::tryParseSpecialToken(data, index);
+		if (tok != NULL) {
+
+			MathSpecialToken *spez = (MathSpecialToken*)tok;
+			if(spez->value == '(') {
+				operatorStack->push(tok);
+				continue;
+			}
+			if(spez->value == ')') {
+				// pop operators until '(' found...
+				MathToken *xx;
+				do {
+					xx = operatorStack->top(); operatorStack->pop();
+					if(xx->getType() != 5) {
+						expression->push(xx);
+					} else {
+						break;
+					}
+
+				} while(true);
+
+			}
+
+
+		}
 
 		// parse numbers...
 		tok = MathNumberToken::tryParseNumberToken(data, index);

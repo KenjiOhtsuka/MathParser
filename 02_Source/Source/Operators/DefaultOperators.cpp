@@ -1,10 +1,3 @@
-/*
- * DefaultOperators.cpp
- *
- *  Created on: 21.04.2012
- *      Author: Max Muster
- */
-
 #include <cmath>
 #include "DefaultOperators.h"
 
