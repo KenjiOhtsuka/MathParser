@@ -1,0 +1,4 @@
+#ifndef _MATH_FUNCTION_TOKEN_H_
+#define _MATH_FUNCTION_TOKEN_H_
+
+#endif /* _MATH_FUNCTION_TOKEN_H_ */
