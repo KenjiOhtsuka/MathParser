@@ -18,3 +18,4 @@ MathSpecialToken* MathSpecialToken::tryParseSpecialToken(string data, int& index
 
 	return 0;
 }
+
