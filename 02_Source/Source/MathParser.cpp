@@ -16,7 +16,7 @@ void MathParser::parse(string data) {
 	MathToken *tok = NULL;
 
 	int index = 0;
-	while (index < data.length()) {
+	while (index < (int)data.length()) {
 
 		// parse special tokens...
 		tok = MathSpecialToken::tryParseSpecialToken(data, index);
