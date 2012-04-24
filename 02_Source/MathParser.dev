@@ -1,7 +1,7 @@
 [Project]
 FileName=MathParser.dev
 Name=MathParser
-UnitCount=8
+UnitCount=21
 PchHead=-1
 PchSource=-1
 Ver=3
@@ -10,37 +10,18 @@ ProfilesCount=2
 ProfileIndex=0
 Folders=
 
-[Unit1]
-FileName=MathParserApp.cpp
-CompileCpp=1
-Folder=MathParser
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit2]
-FileName=MathParserApp.h
-CompileCpp=1
-Folder=MathParser
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit3]
-FileName=MathParserApp.rc
+FileName=Source\MathParserApp.cpp
 Folder=MathParser
 Compile=1
-Link=0
+Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
+CompileCpp=1
 
 [Unit4]
-FileName=Source\MathParserFrm.h
+FileName=Source\MathParserApp.h
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -50,19 +31,10 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=Source\MathParserFrm.cpp
+FileName=Source\MathParserApp.rc
 CompileCpp=1
 Folder=MathParser
 Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit6]
-FileName=Source\MathParserFrm.wxform
-Folder=MathParser
-Compile=0
 Link=0
 Priority=1000
 OverrideBuildCmd=0
@@ -144,28 +116,8 @@ SupportXPThemes=0
 CompilerSet=9
 CompilerType=9
 
-[Unit7]
-FileName=Source\MathParser.cpp
-CompileCpp=1
-Folder=MathParser
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit8]
-FileName=Source\MathParser.h
-CompileCpp=1
-Folder=MathParser
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit9]
-FileName=Source\Tokens\MathNumberToken.cpp
+FileName=Source\MathToken.h
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -175,7 +127,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=Source\Tokens\MathNumberToken.h
+FileName=Source\Tokens\MathNumberToken.cpp
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -185,7 +137,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=Source\Tokens\MathOperatorToken.cpp
+FileName=Source\Tokens\MathNumberToken.h
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -195,7 +147,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit12]
-FileName=Source\Tokens\MathOperatorToken.h
+FileName=Source\Tokens\MathOperatorToken.cpp
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -205,7 +157,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit13]
-FileName=Source\Tokens\MathSpecialToken.cpp
+FileName=Source\Tokens\MathOperatorToken.h
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -215,7 +167,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit14]
-FileName=Source\Tokens\MathSpecialToken.h
+FileName=Source\Tokens\MathSpecialToken.cpp
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -225,7 +177,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit15]
-FileName=Source\Operations\BasicOperations.cpp
+FileName=Source\Tokens\MathSpecialToken.h
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -235,7 +187,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit16]
-FileName=Source\Operations\BasicOperations.h
+FileName=Source\Operations\BasicOperations.cpp
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -245,7 +197,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit17]
-FileName=Source\Operations\LogOperations.cpp
+FileName=Source\Operations\BasicOperations.h
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -255,7 +207,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit18]
-FileName=Source\Operations\LogOperations.h
+FileName=Source\Operations\LogOperations.cpp
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -265,7 +217,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit19]
-FileName=Source\Operations\TrigOperations.cpp
+FileName=Source\Operations\LogOperations.h
 CompileCpp=1
 Folder=MathParser
 Compile=1
@@ -275,6 +227,65 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit20]
+FileName=Source\Operations\TrigOperations.cpp
+CompileCpp=1
+Folder=MathParser
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit1]
+FileName=Source\MathParser.cpp
+CompileCpp=1
+Folder=MathParser
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit2]
+FileName=Source\MathParser.h
+CompileCpp=1
+Folder=MathParser
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit6]
+FileName=Source\MathParserFrm.cpp
+CompileCpp=1
+Folder=MathParser
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit7]
+FileName=Source\MathParserFrm.h
+CompileCpp=1
+Folder=MathParser
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit8]
+FileName=Source\MathParserFrm.wxform
+Folder=MathParser
+Compile=0
+Link=0
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit21]
 FileName=Source\Operations\TrigOperations.h
 CompileCpp=1
 Folder=MathParser
