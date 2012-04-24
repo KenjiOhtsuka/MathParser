@@ -8,11 +8,11 @@ Ver=3
 IsCpp=1
 ProfilesCount=2
 ProfileIndex=0
-Folders=
+Folders=Frame,MainApp,Operations,Parser,Tokens
 
 [Unit3]
 FileName=Source\MathParserApp.cpp
-Folder=MathParser
+Folder=MainApp
 Compile=1
 Link=1
 Priority=1000
@@ -23,7 +23,7 @@ CompileCpp=1
 [Unit4]
 FileName=Source\MathParserApp.h
 CompileCpp=1
-Folder=MathParser
+Folder=MainApp
 Compile=1
 Link=1
 Priority=1000
@@ -33,7 +33,7 @@ BuildCmd=
 [Unit5]
 FileName=Source\MathParserApp.rc
 CompileCpp=1
-Folder=MathParser
+Folder=MainApp
 Compile=1
 Link=0
 Priority=1000
@@ -58,7 +58,7 @@ ProductName=
 ProductVersion=
 AutoIncBuildNrOnRebuild=0
 AutoIncBuildNrOnCompile=0
-UnitCount=20
+UnitCount=21
 
 [Profile1]
 ProfileName=MingW gcc
@@ -119,7 +119,7 @@ CompilerType=9
 [Unit9]
 FileName=Source\MathToken.h
 CompileCpp=1
-Folder=MathParser
+Folder=Tokens
 Compile=1
 Link=1
 Priority=1000
@@ -129,7 +129,7 @@ BuildCmd=
 [Unit10]
 FileName=Source\Tokens\MathNumberToken.cpp
 CompileCpp=1
-Folder=MathParser
+Folder=Tokens
 Compile=1
 Link=1
 Priority=1000
@@ -139,7 +139,7 @@ BuildCmd=
 [Unit11]
 FileName=Source\Tokens\MathNumberToken.h
 CompileCpp=1
-Folder=MathParser
+Folder=Tokens
 Compile=1
 Link=1
 Priority=1000
@@ -149,7 +149,7 @@ BuildCmd=
 [Unit12]
 FileName=Source\Tokens\MathOperatorToken.cpp
 CompileCpp=1
-Folder=MathParser
+Folder=Tokens
 Compile=1
 Link=1
 Priority=1000
@@ -159,7 +159,7 @@ BuildCmd=
 [Unit13]
 FileName=Source\Tokens\MathOperatorToken.h
 CompileCpp=1
-Folder=MathParser
+Folder=Tokens
 Compile=1
 Link=1
 Priority=1000
@@ -169,7 +169,7 @@ BuildCmd=
 [Unit14]
 FileName=Source\Tokens\MathSpecialToken.cpp
 CompileCpp=1
-Folder=MathParser
+Folder=Tokens
 Compile=1
 Link=1
 Priority=1000
@@ -179,7 +179,7 @@ BuildCmd=
 [Unit15]
 FileName=Source\Tokens\MathSpecialToken.h
 CompileCpp=1
-Folder=MathParser
+Folder=Tokens
 Compile=1
 Link=1
 Priority=1000
@@ -189,7 +189,7 @@ BuildCmd=
 [Unit16]
 FileName=Source\Operations\BasicOperations.cpp
 CompileCpp=1
-Folder=MathParser
+Folder=Operations
 Compile=1
 Link=1
 Priority=1000
@@ -199,7 +199,7 @@ BuildCmd=
 [Unit17]
 FileName=Source\Operations\BasicOperations.h
 CompileCpp=1
-Folder=MathParser
+Folder=Operations
 Compile=1
 Link=1
 Priority=1000
@@ -209,7 +209,7 @@ BuildCmd=
 [Unit18]
 FileName=Source\Operations\LogOperations.cpp
 CompileCpp=1
-Folder=MathParser
+Folder=Operations
 Compile=1
 Link=1
 Priority=1000
@@ -219,7 +219,7 @@ BuildCmd=
 [Unit19]
 FileName=Source\Operations\LogOperations.h
 CompileCpp=1
-Folder=MathParser
+Folder=Operations
 Compile=1
 Link=1
 Priority=1000
@@ -229,7 +229,7 @@ BuildCmd=
 [Unit20]
 FileName=Source\Operations\TrigOperations.cpp
 CompileCpp=1
-Folder=MathParser
+Folder=Operations
 Compile=1
 Link=1
 Priority=1000
@@ -239,7 +239,7 @@ BuildCmd=
 [Unit1]
 FileName=Source\MathParser.cpp
 CompileCpp=1
-Folder=MathParser
+Folder=Parser
 Compile=1
 Link=1
 Priority=1000
@@ -249,7 +249,7 @@ BuildCmd=
 [Unit2]
 FileName=Source\MathParser.h
 CompileCpp=1
-Folder=MathParser
+Folder=Parser
 Compile=1
 Link=1
 Priority=1000
@@ -259,7 +259,7 @@ BuildCmd=
 [Unit6]
 FileName=Source\MathParserFrm.cpp
 CompileCpp=1
-Folder=MathParser
+Folder=Frame
 Compile=1
 Link=1
 Priority=1000
@@ -269,7 +269,7 @@ BuildCmd=
 [Unit7]
 FileName=Source\MathParserFrm.h
 CompileCpp=1
-Folder=MathParser
+Folder=Frame
 Compile=1
 Link=1
 Priority=1000
@@ -278,7 +278,7 @@ BuildCmd=
 
 [Unit8]
 FileName=Source\MathParserFrm.wxform
-Folder=MathParser
+Folder=Frame
 Compile=0
 Link=0
 Priority=1000
@@ -288,7 +288,7 @@ BuildCmd=
 [Unit21]
 FileName=Source\Operations\TrigOperations.h
 CompileCpp=1
-Folder=MathParser
+Folder=Operations
 Compile=1
 Link=1
 Priority=1000
