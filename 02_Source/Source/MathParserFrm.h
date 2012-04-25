@@ -26,6 +26,9 @@
 //Header Include Start and Header Include End.
 //wxDev-C++ designer will remove them. Add custom headers after the block.
 ////Header Include Start
+#include <wx/stattext.h>
+#include <wx/spinctrl.h>
+#include <wx/statbmp.h>
 #include <wx/textctrl.h>
 #include <wx/button.h>
 ////Header Include End
@@ -50,6 +53,15 @@ class MathParserFrm : public wxFrame
 		//GUI Control Declaration Start and GUI Control Declaration End.
 		//wxDev-C++ will remove them. Add custom code after the block.
 		////GUI Control Declaration Start
+		wxStaticText *WxStaticText4;
+		wxStaticText *WxStaticText3;
+		wxStaticText *WxStaticText2;
+		wxStaticText *WxStaticText1;
+		wxSpinCtrl *wxValueStep;
+		wxSpinCtrl *wxMaxValue;
+		wxSpinCtrl *wxMinValue;
+		wxStaticBitmap *WxStaticBitmap1;
+		wxTextCtrl *WxMemo1;
 		wxTextCtrl *WxEdit1;
 		wxButton *WxButton1;
 		////GUI Control Declaration End
@@ -62,6 +74,15 @@ class MathParserFrm : public wxFrame
 		enum
 		{
 			////GUI Enum Control ID Start
+			ID_WXSTATICTEXT4 = 1012,
+			ID_WXSTATICTEXT3 = 1011,
+			ID_WXSTATICTEXT2 = 1010,
+			ID_WXSTATICTEXT1 = 1009,
+			ID_WXVALUESTEP = 1008,
+			ID_WXMAXVALUE = 1007,
+			ID_WXMINVALUE = 1006,
+			ID_WXSTATICBITMAP1 = 1005,
+			ID_WXMEMO1 = 1004,
 			ID_WXEDIT1 = 1002,
 			ID_WXBUTTON1 = 1001,
 			////GUI Enum Control ID End
