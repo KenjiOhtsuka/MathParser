@@ -107,14 +107,12 @@ object frmNewForm: TfrmNewForm
     Wx_Floating_Y_Pos = 0
   end
   object WxMemo1: TWxMemo
-    Left = 304
+    Left = 344
     Top = 40
-    Width = 190
+    Width = 150
     Height = 248
     BevelInner = bvNone
     BevelOuter = bvNone
-    Lines.Strings = (
-      'Result')
     TabOrder = 2
     Wx_BGColor = clBlack
     Wx_Class = 'wxTextCtrl'

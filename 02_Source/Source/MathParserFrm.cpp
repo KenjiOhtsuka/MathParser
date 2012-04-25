@@ -14,6 +14,11 @@
 #include "MathParser.h"
 using namespace std;
 
+#define GRAPH_X         8
+#define GRAPH_Y         120
+#define GRAPH_WIDTH     324
+#define GRAPH_HEIGHT    168
+
 //Do not add custom headers between
 //Header Include Start and Header Include End
 //wxDev-C++ designer will remove them
@@ -67,22 +72,22 @@ void MathParserFrm::CreateGUIControls()
 
 	wxMinValue = new wxSpinCtrl(this, ID_WXMINVALUE, wxT("0"), wxPoint(104, 40), wxSize(120, 24), wxSP_ARROW_KEYS, 0, 100, 0);
 
-	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxPoint(304, 40), wxSize(190, 248), wxTE_MULTILINE, wxDefaultValidator, wxT("WxMemo1"));
+	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxPoint(344, 40), wxSize(150, 248), wxTE_MULTILINE, wxDefaultValidator, wxT("WxMemo1"));
 	WxMemo1->SetMaxLength(0);
-	WxMemo1->AppendText(wxT("Result"));
 	WxMemo1->SetFocus();
 	WxMemo1->SetInsertionPointEnd();
 
 	WxEdit1 = new wxTextCtrl(this, ID_WXEDIT1, wxT("1+log(cos(x),7)*2"), wxPoint(68, 8), wxSize(340, 24), 0, wxDefaultValidator, wxT("WxEdit1"));
 
 	WxButton1 = new wxButton(this, ID_WXBUTTON1, wxT("Berechnen"), wxPoint(416, 8), wxSize(80, 24), 0, wxDefaultValidator, wxT("WxButton1"));
-	
+
 	SetTitle(wxT("MathParser"));
 	SetIcon(wxNullIcon);
 	SetSize(8,8,514,336);
 	Center();
 	
 	////GUI Items Creation End
+	WxMemo1->SetEditable(false);
 }
 
 void MathParserFrm::OnClose(wxCloseEvent& event)
@@ -114,6 +119,11 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 	MathParser *parser = new MathParser();
 	parser->parse(formelStr);
 	double res;
+	
+	// draw the rectangle around the graph panel
+    wxClientDC dc(this);
+    dc.SetPen(wxPen(wxColor(0,0,0), 1)); // black line, 1 pixels thick
+    dc.DrawRectangle(GRAPH_X, GRAPH_Y, GRAPH_WIDTH, GRAPH_HEIGHT);
 	
 	// evaluate points
 	int i;

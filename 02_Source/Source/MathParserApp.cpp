@@ -8,7 +8,7 @@
 //---------------------------------------------------------------------------
 
 #include "MathParserApp.h"
-#include "Source\MathParserFrm.h"
+#include "MathParserFrm.h"
 
 IMPLEMENT_APP(MathParserFrmApp)
 
