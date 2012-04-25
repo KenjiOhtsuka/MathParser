@@ -1,7 +1,7 @@
 # Project: MathParser
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ IDE 7.4.2.551 on 25.04.12 10:00
+# Makefile created by wxDev-C++ IDE 7.4.2.551 on 25.04.12 10:25
 
 WXLIBNAME = wxmsw29u
 CPP       = g++.exe

@@ -28,7 +28,6 @@
 ////Header Include Start
 #include <wx/stattext.h>
 #include <wx/spinctrl.h>
-#include <wx/statbmp.h>
 #include <wx/textctrl.h>
 #include <wx/button.h>
 ////Header Include End
@@ -60,7 +59,6 @@ class MathParserFrm : public wxFrame
 		wxSpinCtrl *wxValueStep;
 		wxSpinCtrl *wxMaxValue;
 		wxSpinCtrl *wxMinValue;
-		wxStaticBitmap *WxStaticBitmap1;
 		wxTextCtrl *WxMemo1;
 		wxTextCtrl *WxEdit1;
 		wxButton *WxButton1;
@@ -81,7 +79,6 @@ class MathParserFrm : public wxFrame
 			ID_WXVALUESTEP = 1008,
 			ID_WXMAXVALUE = 1007,
 			ID_WXMINVALUE = 1006,
-			ID_WXSTATICBITMAP1 = 1005,
 			ID_WXMEMO1 = 1004,
 			ID_WXEDIT1 = 1002,
 			ID_WXBUTTON1 = 1001,

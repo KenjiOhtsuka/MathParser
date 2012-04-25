@@ -53,8 +53,6 @@ void MathParserFrm::CreateGUIControls()
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
-	wxInitAllImageHandlers();   //Initialize graphic format handlers
-
 	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, wxT("Formel"), wxPoint(8, 8), wxDefaultSize, 0, wxT("WxStaticText4"));
 
 	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, wxT("Value Step"), wxPoint(8, 88), wxDefaultSize, 0, wxT("WxStaticText3"));
@@ -69,8 +67,6 @@ void MathParserFrm::CreateGUIControls()
 
 	wxMinValue = new wxSpinCtrl(this, ID_WXMINVALUE, wxT("0"), wxPoint(104, 40), wxSize(120, 24), wxSP_ARROW_KEYS, 0, 100, 0);
 
-	WxStaticBitmap1 = new wxStaticBitmap(this, ID_WXSTATICBITMAP1, wxNullBitmap, wxPoint(8, 120), wxSize(288, 168) );
-
 	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxPoint(304, 40), wxSize(190, 248), wxTE_MULTILINE, wxDefaultValidator, wxT("WxMemo1"));
 	WxMemo1->SetMaxLength(0);
 	WxMemo1->AppendText(wxT("Result"));
@@ -80,7 +76,7 @@ void MathParserFrm::CreateGUIControls()
 	WxEdit1 = new wxTextCtrl(this, ID_WXEDIT1, wxT("1+log(cos(x),7)*2"), wxPoint(68, 8), wxSize(340, 24), 0, wxDefaultValidator, wxT("WxEdit1"));
 
 	WxButton1 = new wxButton(this, ID_WXBUTTON1, wxT("Berechnen"), wxPoint(416, 8), wxSize(80, 24), 0, wxDefaultValidator, wxT("WxButton1"));
-
+	
 	SetTitle(wxT("MathParser"));
 	SetIcon(wxNullIcon);
 	SetSize(8,8,514,336);

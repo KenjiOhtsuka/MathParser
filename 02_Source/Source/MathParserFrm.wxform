@@ -142,42 +142,13 @@ object frmNewForm: TfrmNewForm
     Wx_Floating_X_Pos = 0
     Wx_Floating_Y_Pos = 0
   end
-  object WxStaticBitmap1: TWxStaticBitmap
-    Left = 8
-    Top = 120
-    Width = 288
-    Height = 168
-    TabOrder = 3
-    Picture.Data = {07544269746D617000000000}
-    Wx_Class = 'wxStaticBitmap'
-    Wx_ControlOrientation = wxControlVertical
-    Wx_GeneralStyle = []
-    Wx_IDName = 'ID_WXSTATICBITMAP1'
-    Wx_IDValue = 1005
-    Wx_PaneCaption = 'WxStaticBitmap1'
-    Wx_PaneName = 'WxStaticBitmap1_Pane'
-    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
-    Wx_Aui_Dockable_Direction = []
-    Wx_Aui_Pane_Style = []
-    Wx_Aui_Pane_Buttons = []
-    Wx_BestSize_Height = 0
-    Wx_BestSize_Width = 0
-    Wx_MinSize_Height = 0
-    Wx_MinSize_Width = 0
-    Wx_MaxSize_Height = 0
-    Wx_MaxSize_Width = 0
-    Wx_Floating_Height = 0
-    Wx_Floating_Width = 0
-    Wx_Floating_X_Pos = 0
-    Wx_Floating_Y_Pos = 0
-  end
   object wxMinValue: TWxSpinCtrl
     Left = 104
     Top = 40
     Width = 120
     Height = 24
     MinValue = 0
-    TabOrder = 4
+    TabOrder = 3
     Value = 0
     Wx_BGColor = clBlack
     Wx_Class = 'wxSpinCtrl'
@@ -212,7 +183,7 @@ object frmNewForm: TfrmNewForm
     Width = 120
     Height = 24
     MinValue = 0
-    TabOrder = 5
+    TabOrder = 4
     Value = 100
     Wx_BGColor = clBlack
     Wx_Class = 'wxSpinCtrl'
@@ -247,7 +218,7 @@ object frmNewForm: TfrmNewForm
     Width = 120
     Height = 24
     MinValue = 0
-    TabOrder = 6
+    TabOrder = 5
     Value = 10
     Wx_BGColor = clBlack
     Wx_Class = 'wxSpinCtrl'
@@ -282,7 +253,7 @@ object frmNewForm: TfrmNewForm
     Width = 89
     Height = 19
     Caption = 'Minimum Value'
-    TabOrder = 7
+    TabOrder = 6
     Wx_BGColor = clBlack
     Wx_Class = 'wxStaticText'
     Wx_ControlOrientation = wxControlVertical
@@ -315,7 +286,7 @@ object frmNewForm: TfrmNewForm
     Width = 90
     Height = 19
     Caption = 'Maximum Value'
-    TabOrder = 8
+    TabOrder = 7
     Wx_BGColor = clBlack
     Wx_Class = 'wxStaticText'
     Wx_ControlOrientation = wxControlVertical
@@ -348,7 +319,7 @@ object frmNewForm: TfrmNewForm
     Width = 59
     Height = 19
     Caption = 'Value Step'
-    TabOrder = 9
+    TabOrder = 8
     Wx_BGColor = clBlack
     Wx_Class = 'wxStaticText'
     Wx_ControlOrientation = wxControlVertical
@@ -381,7 +352,7 @@ object frmNewForm: TfrmNewForm
     Width = 41
     Height = 19
     Caption = 'Formel'
-    TabOrder = 10
+    TabOrder = 9
     Wx_BGColor = clBlack
     Wx_Class = 'wxStaticText'
     Wx_ControlOrientation = wxControlVertical
