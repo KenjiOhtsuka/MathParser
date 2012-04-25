@@ -87,7 +87,9 @@ void MathParserFrm::CreateGUIControls()
 	Center();
 	
 	////GUI Items Creation End
+	
 	WxMemo1->SetEditable(false);
+    dc = new wxClientDC(this);
 }
 
 void MathParserFrm::OnClose(wxCloseEvent& event)
@@ -103,6 +105,7 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 	char * formelPtr;
 	
 	WxMemo1->SetValue("");
+	dc->Clear();
 	
 	// read the WxEdit1 field
 	wxString wstr = WxEdit1->GetValue();
@@ -121,9 +124,8 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 	double res;
 	
 	// draw the rectangle around the graph panel
-    wxClientDC dc(this);
-    dc.SetPen(wxPen(wxColor(0,0,0), 1)); // black line, 1 pixels thick
-    dc.DrawRectangle(GRAPH_X, GRAPH_Y, GRAPH_WIDTH, GRAPH_HEIGHT);
+    dc->SetPen(wxPen(wxColor(0,0,0), 1)); // black line, 1 pixels thick
+    dc->DrawRectangle(GRAPH_X, GRAPH_Y, GRAPH_WIDTH, GRAPH_HEIGHT);
 	
 	// evaluate points
 	int i;

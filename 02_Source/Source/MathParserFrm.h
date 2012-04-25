@@ -63,6 +63,7 @@ class MathParserFrm : public wxFrame
 		wxTextCtrl *WxEdit1;
 		wxButton *WxButton1;
 		////GUI Control Declaration End
+		wxClientDC *dc;
 		
 	private:
 		//Note: if you receive any error with these enum IDs, then you need to
