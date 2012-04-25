@@ -19,6 +19,11 @@ using namespace std;
 #define GRAPH_WIDTH     324
 #define GRAPH_HEIGHT    168
 
+typedef struct {
+    double x;
+    double y;
+} xy_T;
+
 //Do not add custom headers between
 //Header Include Start and Header Include End
 //wxDev-C++ designer will remove them
@@ -104,6 +109,7 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 {
 	char * formelPtr;
 	
+	WxMemo1->SetEditable(false);
 	WxMemo1->SetValue("");
 	dc->Clear();
 	
@@ -121,16 +127,30 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 	// calc
 	MathParser *parser = new MathParser();
 	parser->parse(formelStr);
-	double res;
 	
 	// draw the rectangle around the graph panel
     dc->SetPen(wxPen(wxColor(0,0,0), 1)); // black line, 1 pixels thick
     dc->DrawRectangle(GRAPH_X, GRAPH_Y, GRAPH_WIDTH, GRAPH_HEIGHT);
 	
 	// evaluate points
+	int StepNbrs = (maxValue-minValue)/ValueStep + 1;
+    xy_T points[StepNbrs];
 	int i;
-	for(i = minValue; i <= maxValue; i = i+ValueStep) {
-        res = parser->evaluate((double)i);
-        (*WxMemo1) << "f(" << i << ")=" << res << "\n";
+	for(i = 0; i < StepNbrs; i = i++) {
+        points[i].x = minValue + i*ValueStep;
+        points[i].y = parser->evaluate(points[i].x);
+        (*WxMemo1) << "f(" << points[i].x << ")=" << points[i].y << "\n";
+    }
+    
+    // draw graph
+	int StepWidth = GRAPH_WIDTH / StepNbrs;
+	
+	double min = -2.0;        // WARNING !!!!!
+	double max = 110;
+	
+	int StepHeight = GRAPH_HEIGHT / (max-min);
+	for(i = 1; i < StepNbrs; i = i++) {
+        dc->DrawLine(GRAPH_X+points[i-1].x*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i-1].y*StepHeight,
+                GRAPH_X+points[i].x*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i].y*StepHeight);
     }
 }
