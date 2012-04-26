@@ -139,7 +139,7 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
     }
     
     // draw graph
-	double StepWidth = GRAPH_WIDTH / StepNbrs;
+	double StepWidth = (double)GRAPH_WIDTH / (double)(StepNbrs-1);
 	
 	double min = points.min_y();
 	double max = points.max_y();
@@ -151,12 +151,13 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
     (*WxMemo1) << "Step width: " << StepWidth << "\n";
     (*WxMemo1) << "Step height: " << StepHeight << "\n";
     (*WxMemo1) << "x min: " << GRAPH_X << "\n";
-    (*WxMemo1) << "x max: " << GRAPH_X+(StepNbrs-1)*StepWidth << "\n";
+    (*WxMemo1) << "x max: " << GRAPH_X+StepNbrs*StepWidth << "\n";
     (*WxMemo1) << "y min: " << min << "\n";
     (*WxMemo1) << "y max: " << max << "\n";
 	
 	for(int i = 1; i < StepNbrs; i = i++) {
         dc->DrawLine(GRAPH_X+(i-1)*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i-1].y*StepHeight,
                 GRAPH_X+i*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i].y*StepHeight);
+        (*WxMemo1) << i << " ";
     }
 }
