@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 #include "MathParserFrm.h"
 #include "MathParser.h"
 #include "array.h"
@@ -60,6 +61,12 @@ void MathParserFrm::CreateGUIControls()
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
+	wxValueStep = new wxTextCtrl(this, ID_WXVALUESTEP, wxT("1.0"), wxPoint(104, 88), wxSize(120, 24), 0, wxDefaultValidator, wxT("wxValueStep"));
+
+	wxMaxValue = new wxTextCtrl(this, ID_WXMAXVALUE, wxT("20.0"), wxPoint(104, 64), wxSize(120, 24), 0, wxDefaultValidator, wxT("wxMaxValue"));
+
+	wxMinValue = new wxTextCtrl(this, ID_WXMINVALUE, wxT("0.0"), wxPoint(104, 40), wxSize(120, 24), 0, wxDefaultValidator, wxT("wxMinValue"));
+
 	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, wxT("Formel"), wxPoint(8, 8), wxDefaultSize, 0, wxT("WxStaticText4"));
 
 	WxStaticText3 = new wxStaticText(this, ID_WXSTATICTEXT3, wxT("Value Step"), wxPoint(8, 88), wxDefaultSize, 0, wxT("WxStaticText3"));
@@ -67,12 +74,6 @@ void MathParserFrm::CreateGUIControls()
 	WxStaticText2 = new wxStaticText(this, ID_WXSTATICTEXT2, wxT("Maximum Value"), wxPoint(8, 64), wxDefaultSize, 0, wxT("WxStaticText2"));
 
 	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, wxT("Minimum Value"), wxPoint(8, 40), wxDefaultSize, 0, wxT("WxStaticText1"));
-
-	wxValueStep = new wxSpinCtrl(this, ID_WXVALUESTEP, wxT("10"), wxPoint(104, 88), wxSize(120, 24), wxSP_ARROW_KEYS, 0, 100, 10);
-
-	wxMaxValue = new wxSpinCtrl(this, ID_WXMAXVALUE, wxT("100"), wxPoint(104, 64), wxSize(120, 24), wxSP_ARROW_KEYS, 0, 100, 100);
-
-	wxMinValue = new wxSpinCtrl(this, ID_WXMINVALUE, wxT("0"), wxPoint(104, 40), wxSize(120, 24), wxSP_ARROW_KEYS, 0, 100, 0);
 
 	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxPoint(344, 40), wxSize(150, 248), wxTE_MULTILINE, wxDefaultValidator, wxT("WxMemo1"));
 	WxMemo1->SetMaxLength(0);
@@ -104,49 +105,77 @@ void MathParserFrm::OnClose(wxCloseEvent& event)
  */
 void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 {
-	char * formelPtr;
-	
 	WxMemo1->SetEditable(false);
 	WxMemo1->SetValue("");
 	dc->Clear();
 	
 	// read the WxEdit1 field
+	char * formelPtr;
 	wxString wstr = WxEdit1->GetValue();
 	formelPtr = new char[wstr.Length()+1];
 	strcpy(formelPtr, wstr.c_str());
 	std::string formelStr(formelPtr);
 	
 	// get min, max and step values
-	int minValue = wxMinValue->GetValue();
-	int maxValue = wxMaxValue->GetValue();
-	int ValueStep = wxValueStep->GetValue();
-	
-	// calc
-	MathParser *parser = new MathParser();
-	parser->parse(formelStr);
-	
-	// draw the rectangle around the graph panel
-    dc->SetPen(wxPen(wxColor(0,0,0), 1)); // black line, 1 pixels thick
-    dc->DrawRectangle(GRAPH_X, GRAPH_Y, GRAPH_WIDTH, GRAPH_HEIGHT);
-	
-	// evaluate points
-	int StepNbrs = (maxValue-minValue)/ValueStep + 1;
-    PointArray points(StepNbrs);
-	for(int i = 0; i < StepNbrs; i = i++) {
-        points[i].x = minValue + i*ValueStep;
-        points[i].y = parser->evaluate(points[i].x);
-        (*WxMemo1) << "f(" << points[i].x << ")=" << points[i].y << "\n";
+	bool calc = true;
+	char * valueStr;
+	double minValue, maxValue, ValueStep;
+	wstr = wxMinValue->GetValue();
+	valueStr = new char[wstr.Length()+1];
+	strcpy(valueStr, wstr.c_str());
+	std::istringstream minValueC(valueStr);
+	if (!(minValueC >> minValue)) {
+        calc = false;
+	    (*WxMemo1) << "Minimum value is no double number!\n";
     }
-    
-    // draw graph
-	double StepWidth = (double)GRAPH_WIDTH / (double)(StepNbrs-1);
+    delete[] valueStr;
+	wstr = wxMaxValue->GetValue();
+	valueStr = new char[wstr.Length()+1];
+	strcpy(valueStr, wstr.c_str());
+	std::istringstream maxValueC(valueStr);
+	if (!(maxValueC >> maxValue)) {
+        calc = false;
+	    (*WxMemo1) << "Maximum value is no double number!\n";
+    }
+    delete[] valueStr;
+	wstr = wxValueStep->GetValue();
+	valueStr = new char[wstr.Length()+1];
+	strcpy(valueStr, wstr.c_str());
+	std::istringstream ValueStepC(valueStr);
+	if (!(ValueStepC >> ValueStep)) {
+        calc = false;
+	    (*WxMemo1) << "Value step is no double number!\n";
+    }
+    delete[] valueStr;
 	
-	double min = points.min_y();
-	double max = points.max_y();
-	double StepHeight = GRAPH_HEIGHT / (max-min);
-	
-	for(int i = 1; i < StepNbrs; i = i++) {
-        dc->DrawLine(GRAPH_X+(i-1)*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i-1].y*StepHeight,
-                GRAPH_X+i*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i].y*StepHeight);
+	if (calc) { // only calc if no errors !!
+	    // calc
+	    MathParser *parser = new MathParser();
+	    parser->parse(formelStr);
+	   
+	    // draw the rectangle around the graph panel
+        dc->SetPen(wxPen(wxColor(0,0,0), 1)); // black line, 1 pixels thick
+        dc->DrawRectangle(GRAPH_X, GRAPH_Y, GRAPH_WIDTH, GRAPH_HEIGHT);
+	   
+        // evaluate points
+        int StepNbrs = (maxValue-minValue)/ValueStep + 1;
+            PointArray points(StepNbrs);
+        for(int i = 0; i < StepNbrs; i = i++) {
+            points[i].x = minValue + i*ValueStep;
+            points[i].y = parser->evaluate(points[i].x);
+            (*WxMemo1) << "f(" << points[i].x << ")=" << points[i].y << "\n";
+        }
+        
+        // draw graph
+	    double StepWidth = (double)GRAPH_WIDTH / (double)(StepNbrs-1);
+	    
+	    double min = points.min_y();
+	    double max = points.max_y();
+	    double StepHeight = GRAPH_HEIGHT / (max-min);
+	    
+	    for(int i = 1; i < StepNbrs; i = i++) {
+             dc->DrawLine(GRAPH_X+(i-1)*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i-1].y*StepHeight,
+                    GRAPH_X+i*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i].y*StepHeight);
+        }
     }
 }
