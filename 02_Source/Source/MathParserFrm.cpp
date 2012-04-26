@@ -17,10 +17,16 @@
 #include "xy_T.h"
 using namespace std;
 
-#define GRAPH_X         8
-#define GRAPH_Y         120
-#define GRAPH_WIDTH     324
-#define GRAPH_HEIGHT    168
+#define GRAPH_X         200                             // graph distance to the left side of the frame
+#define GRAPH_Y         40                              // graph distance to the top side of the frame
+#define GRAPH_WIDTH     440                             // graph width
+#define GRAPH_HEIGHT    320                             // graph height
+#define TEXT_X_L        ( GRAPH_X - 10 )                // x-axis text
+#define TEXT_X_R        ( GRAPH_X + GRAPH_WIDTH - 14 )
+#define TEXT_X_Y        ( GRAPH_Y + GRAPH_HEIGHT + 4 )
+#define TEXT_Y_T        ( GRAPH_Y - 5 )                 // y-axis text
+#define TEXT_Y_B        ( GRAPH_Y + GRAPH_HEIGHT - 8 )
+#define TEXT_Y_X        ( GRAPH_X - 40 )
 
 //Do not add custom headers between
 //Header Include Start and Header Include End
@@ -61,11 +67,11 @@ void MathParserFrm::CreateGUIControls()
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
-	wxValueStep = new wxTextCtrl(this, ID_WXVALUESTEP, wxT("1.0"), wxPoint(104, 88), wxSize(120, 24), 0, wxDefaultValidator, wxT("wxValueStep"));
+	wxValueStep = new wxTextCtrl(this, ID_WXVALUESTEP, wxT("1.0"), wxPoint(104, 88), wxSize(54, 24), 0, wxDefaultValidator, wxT("wxValueStep"));
 
-	wxMaxValue = new wxTextCtrl(this, ID_WXMAXVALUE, wxT("20.0"), wxPoint(104, 64), wxSize(120, 24), 0, wxDefaultValidator, wxT("wxMaxValue"));
+	wxMaxValue = new wxTextCtrl(this, ID_WXMAXVALUE, wxT("20.0"), wxPoint(104, 64), wxSize(54, 24), 0, wxDefaultValidator, wxT("wxMaxValue"));
 
-	wxMinValue = new wxTextCtrl(this, ID_WXMINVALUE, wxT("0.0"), wxPoint(104, 40), wxSize(120, 24), 0, wxDefaultValidator, wxT("wxMinValue"));
+	wxMinValue = new wxTextCtrl(this, ID_WXMINVALUE, wxT("0.0"), wxPoint(104, 40), wxSize(54, 24), 0, wxDefaultValidator, wxT("wxMinValue"));
 
 	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, wxT("Formel"), wxPoint(8, 8), wxDefaultSize, 0, wxT("WxStaticText4"));
 
@@ -75,7 +81,7 @@ void MathParserFrm::CreateGUIControls()
 
 	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, wxT("Minimum Value"), wxPoint(8, 40), wxDefaultSize, 0, wxT("WxStaticText1"));
 
-	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxPoint(344, 40), wxSize(150, 248), wxTE_MULTILINE, wxDefaultValidator, wxT("WxMemo1"));
+	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxPoint(8, 120), wxSize(150, 248), wxTE_MULTILINE, wxDefaultValidator, wxT("WxMemo1"));
 	WxMemo1->SetMaxLength(0);
 	WxMemo1->SetFocus();
 	WxMemo1->SetInsertionPointEnd();
@@ -86,7 +92,7 @@ void MathParserFrm::CreateGUIControls()
 
 	SetTitle(wxT("MathParser"));
 	SetIcon(wxNullIcon);
-	SetSize(8,8,514,336);
+	SetSize(8,8,668,408);
 	Center();
 	
 	////GUI Items Creation End
@@ -166,16 +172,25 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
             (*WxMemo1) << "f(" << points[i].x << ")=" << points[i].y << "\n";
         }
         
-        // draw graph
-	    double StepWidth = (double)GRAPH_WIDTH / (double)(StepNbrs-1);
-	    
+        // draw min and max values
+        char temp[100];
 	    double min = points.min_y();
 	    double max = points.max_y();
-	    double StepHeight = GRAPH_HEIGHT / (max-min);
+	    sprintf(temp, "%.3f", points.min_x());
+	    dc->DrawText(temp, TEXT_X_L, TEXT_X_Y);
+	    sprintf(temp, "%.3f", points.max_x());
+	    dc->DrawText(temp, TEXT_X_R, TEXT_X_Y);
+	    sprintf(temp, "%.3f", min);
+	    dc->DrawText(temp, TEXT_Y_X, TEXT_Y_B);
+	    sprintf(temp, "%.3f", max);
+	    dc->DrawText(temp, TEXT_Y_X, TEXT_Y_T);
 	    
+        // draw graph
+	    double StepWidth = (double)GRAPH_WIDTH / (double)(StepNbrs-1);
+	    double StepHeight = (double)GRAPH_HEIGHT / (double)(max-min);
 	    for(int i = 1; i < StepNbrs; i = i++) {
-             dc->DrawLine(GRAPH_X+(i-1)*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i-1].y*StepHeight,
-                    GRAPH_X+i*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i].y*StepHeight);
+             dc->DrawLine(GRAPH_X+(i-1)*StepWidth, GRAPH_Y+GRAPH_HEIGHT-(points[i-1].y-min)*StepHeight,
+                    GRAPH_X+i*StepWidth, GRAPH_Y+GRAPH_HEIGHT-(points[i].y-min)*StepHeight);
         }
     }
 }

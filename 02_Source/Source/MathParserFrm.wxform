@@ -4,8 +4,8 @@ object frmNewForm: TfrmNewForm
   AutoScroll = False
   BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'MathParser'
-  ClientHeight = 298
-  ClientWidth = 498
+  ClientHeight = 370
+  ClientWidth = 652
   Color = clAppWorkSpace
   OldCreateOrder = True
   PopupMenu = DesignerPopup.Owner
@@ -107,8 +107,8 @@ object frmNewForm: TfrmNewForm
     Wx_Floating_Y_Pos = 0
   end
   object WxMemo1: TWxMemo
-    Left = 344
-    Top = 40
+    Left = 8
+    Top = 120
     Width = 150
     Height = 248
     BevelInner = bvNone
@@ -275,7 +275,7 @@ object frmNewForm: TfrmNewForm
   object wxMinValue: TWxEdit
     Left = 104
     Top = 40
-    Width = 120
+    Width = 54
     Height = 24
     BevelInner = bvNone
     BevelOuter = bvNone
@@ -312,7 +312,7 @@ object frmNewForm: TfrmNewForm
   object wxMaxValue: TWxEdit
     Left = 104
     Top = 64
-    Width = 120
+    Width = 54
     Height = 24
     BevelInner = bvNone
     BevelOuter = bvNone
@@ -349,7 +349,7 @@ object frmNewForm: TfrmNewForm
   object wxValueStep: TWxEdit
     Left = 104
     Top = 88
-    Width = 120
+    Width = 54
     Height = 24
     BevelInner = bvNone
     BevelOuter = bvNone
