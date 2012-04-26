@@ -1,7 +1,7 @@
 # Project: MathParser
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ IDE 7.4.2.551 on 25.04.12 13:28
+# Makefile created by wxDev-C++ IDE 7.4.2.551 on 26.04.12 11:08
 
 WXLIBNAME = wxmsw29u
 CPP       = g++.exe
@@ -42,7 +42,7 @@ Objects/MingW/MathParser.o: $(GLOBALDEPS) Source/MathParser.cpp Source/Tokens/Ma
 Objects/MingW/MathParserApp.o: $(GLOBALDEPS) Source/MathParserApp.cpp Source/MathParserApp.h Source/MathParserFrm.h
 	$(CPP) -c Source/MathParserApp.cpp -o Objects/MingW/MathParserApp.o $(CXXFLAGS)
 
-Objects/MingW/MathParserFrm.o: $(GLOBALDEPS) Source/MathParserFrm.cpp Source/MathParserFrm.h Source/MathParser.h Source/MathToken.h
+Objects/MingW/MathParserFrm.o: $(GLOBALDEPS) Source/MathParserFrm.cpp Source/MathParserFrm.h Source/MathParser.h Source/MathToken.h Source/array.h Source/xy_T.h Source/xy_T.h
 	$(CPP) -c Source/MathParserFrm.cpp -o Objects/MingW/MathParserFrm.o $(CXXFLAGS)
 
 Objects/MingW/MathNumberToken.o: $(GLOBALDEPS) Source/Tokens/MathNumberToken.cpp Source/Tokens/MathNumberToken.h Source/MathToken.h

@@ -12,17 +12,14 @@
 #include <string>
 #include "MathParserFrm.h"
 #include "MathParser.h"
+#include "array.h"
+#include "xy_T.h"
 using namespace std;
 
 #define GRAPH_X         8
 #define GRAPH_Y         120
 #define GRAPH_WIDTH     324
 #define GRAPH_HEIGHT    168
-
-typedef struct {
-    double x;
-    double y;
-} xy_T;
 
 //Do not add custom headers between
 //Header Include Start and Header Include End
@@ -134,23 +131,32 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 	
 	// evaluate points
 	int StepNbrs = (maxValue-minValue)/ValueStep + 1;
-    xy_T points[StepNbrs];
-	int i;
-	for(i = 0; i < StepNbrs; i = i++) {
+    PointArray points(StepNbrs);
+	for(int i = 0; i < StepNbrs; i = i++) {
         points[i].x = minValue + i*ValueStep;
         points[i].y = parser->evaluate(points[i].x);
         (*WxMemo1) << "f(" << points[i].x << ")=" << points[i].y << "\n";
     }
     
     // draw graph
-	int StepWidth = GRAPH_WIDTH / StepNbrs;
+	double StepWidth = GRAPH_WIDTH / StepNbrs;
 	
-	double min = -2.0;        // WARNING !!!!!
-	double max = 110;
+	double min = points.min_y();
+	double max = points.max_y();
+	double StepHeight = GRAPH_HEIGHT / (max-min);
 	
-	int StepHeight = GRAPH_HEIGHT / (max-min);
-	for(i = 1; i < StepNbrs; i = i++) {
-        dc->DrawLine(GRAPH_X+points[i-1].x*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i-1].y*StepHeight,
-                GRAPH_X+points[i].x*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i].y*StepHeight);
+	(*WxMemo1) << "Step Nbrs: " << StepNbrs << "\n";
+    (*WxMemo1) << "Graph width: " << GRAPH_WIDTH << "\n";
+    (*WxMemo1) << "Graph height: " << GRAPH_HEIGHT << "\n";
+    (*WxMemo1) << "Step width: " << StepWidth << "\n";
+    (*WxMemo1) << "Step height: " << StepHeight << "\n";
+    (*WxMemo1) << "x min: " << GRAPH_X << "\n";
+    (*WxMemo1) << "x max: " << GRAPH_X+(StepNbrs-1)*StepWidth << "\n";
+    (*WxMemo1) << "y min: " << min << "\n";
+    (*WxMemo1) << "y max: " << max << "\n";
+	
+	for(int i = 1; i < StepNbrs; i = i++) {
+        dc->DrawLine(GRAPH_X+(i-1)*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i-1].y*StepHeight,
+                GRAPH_X+i*StepWidth, GRAPH_Y+GRAPH_HEIGHT-points[i].y*StepHeight);
     }
 }

@@ -58,7 +58,7 @@ ProductName=
 ProductVersion=
 AutoIncBuildNrOnRebuild=0
 AutoIncBuildNrOnCompile=0
-UnitCount=21
+UnitCount=23
 
 [Profile1]
 ProfileName=MingW gcc
@@ -289,6 +289,26 @@ BuildCmd=
 FileName=Source\Operations\TrigOperations.h
 CompileCpp=1
 Folder=Operations
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit22]
+FileName=Source\xy_T.h
+CompileCpp=1
+Folder=MainApp
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit23]
+FileName=Source\array.h
+CompileCpp=1
+Folder=MainApp
 Compile=1
 Link=1
 Priority=1000
