@@ -58,7 +58,6 @@ class MathParserFrm : public wxFrame
 		wxStaticText *WxStaticText3;
 		wxStaticText *WxStaticText2;
 		wxStaticText *WxStaticText1;
-		wxTextCtrl *WxMemo1;
 		wxTextCtrl *WxEdit1;
 		wxButton *WxButton1;
 		////GUI Control Declaration End
@@ -79,7 +78,6 @@ class MathParserFrm : public wxFrame
 			ID_WXSTATICTEXT3 = 1011,
 			ID_WXSTATICTEXT2 = 1010,
 			ID_WXSTATICTEXT1 = 1009,
-			ID_WXMEMO1 = 1004,
 			ID_WXEDIT1 = 1002,
 			ID_WXBUTTON1 = 1001,
 			////GUI Enum Control ID End

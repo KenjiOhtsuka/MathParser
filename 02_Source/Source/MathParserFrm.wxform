@@ -78,7 +78,7 @@ object frmNewForm: TfrmNewForm
     BevelOuter = bvNone
     AutoSize = False
     TabOrder = 1
-    Text = '1+log(cos(x),7)*2'
+    Text = '1+cos(log(x,7))*2'
     Wx_BGColor = clBlack
     Wx_Class = 'wxTextCtrl'
     Wx_ControlOrientation = wxControlVertical
@@ -106,47 +106,13 @@ object frmNewForm: TfrmNewForm
     Wx_Floating_X_Pos = 0
     Wx_Floating_Y_Pos = 0
   end
-  object WxMemo1: TWxMemo
-    Left = 8
-    Top = 120
-    Width = 150
-    Height = 248
-    BevelInner = bvNone
-    BevelOuter = bvNone
-    TabOrder = 2
-    Wx_BGColor = clBlack
-    Wx_Class = 'wxTextCtrl'
-    Wx_ControlOrientation = wxControlVertical
-    Wx_EditStyle = [wxTE_MULTILINE]
-    Wx_FGColor = clBlack
-    Wx_GeneralStyle = []
-    Wx_IDName = 'ID_WXMEMO1'
-    Wx_IDValue = 1004
-    Wx_MaxLength = 0
-    Wx_PaneCaption = 'WxMemo1'
-    Wx_PaneName = 'WxMemo1_Pane'
-    Wx_Aui_Dock_Direction = wxAUI_DOCK_NONE
-    Wx_Aui_Dockable_Direction = []
-    Wx_Aui_Pane_Style = []
-    Wx_Aui_Pane_Buttons = []
-    Wx_BestSize_Height = 0
-    Wx_BestSize_Width = 0
-    Wx_MinSize_Height = 0
-    Wx_MinSize_Width = 0
-    Wx_MaxSize_Height = 0
-    Wx_MaxSize_Width = 0
-    Wx_Floating_Height = 0
-    Wx_Floating_Width = 0
-    Wx_Floating_X_Pos = 0
-    Wx_Floating_Y_Pos = 0
-  end
   object WxStaticText1: TWxStaticText
     Left = 8
     Top = 40
     Width = 89
     Height = 19
     Caption = 'Minimum Value'
-    TabOrder = 3
+    TabOrder = 2
     Wx_BGColor = clBlack
     Wx_Class = 'wxStaticText'
     Wx_ControlOrientation = wxControlVertical
@@ -179,7 +145,7 @@ object frmNewForm: TfrmNewForm
     Width = 90
     Height = 19
     Caption = 'Maximum Value'
-    TabOrder = 4
+    TabOrder = 3
     Wx_BGColor = clBlack
     Wx_Class = 'wxStaticText'
     Wx_ControlOrientation = wxControlVertical
@@ -212,7 +178,7 @@ object frmNewForm: TfrmNewForm
     Width = 59
     Height = 19
     Caption = 'Value Step'
-    TabOrder = 5
+    TabOrder = 4
     Wx_BGColor = clBlack
     Wx_Class = 'wxStaticText'
     Wx_ControlOrientation = wxControlVertical
@@ -245,7 +211,7 @@ object frmNewForm: TfrmNewForm
     Width = 41
     Height = 19
     Caption = 'Formel'
-    TabOrder = 6
+    TabOrder = 5
     Wx_BGColor = clBlack
     Wx_Class = 'wxStaticText'
     Wx_ControlOrientation = wxControlVertical
@@ -280,8 +246,8 @@ object frmNewForm: TfrmNewForm
     BevelInner = bvNone
     BevelOuter = bvNone
     AutoSize = False
-    TabOrder = 7
-    Text = '0.0'
+    TabOrder = 6
+    Text = '0.1'
     Wx_BGColor = clBlack
     Wx_Class = 'wxTextCtrl'
     Wx_ControlOrientation = wxControlVertical
@@ -317,8 +283,8 @@ object frmNewForm: TfrmNewForm
     BevelInner = bvNone
     BevelOuter = bvNone
     AutoSize = False
-    TabOrder = 8
-    Text = '20.0'
+    TabOrder = 7
+    Text = '10'
     Wx_BGColor = clBlack
     Wx_Class = 'wxTextCtrl'
     Wx_ControlOrientation = wxControlVertical
@@ -354,8 +320,8 @@ object frmNewForm: TfrmNewForm
     BevelInner = bvNone
     BevelOuter = bvNone
     AutoSize = False
-    TabOrder = 9
-    Text = '1.0'
+    TabOrder = 8
+    Text = '0.1'
     Wx_BGColor = clBlack
     Wx_Class = 'wxTextCtrl'
     Wx_ControlOrientation = wxControlVertical

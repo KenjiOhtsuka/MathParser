@@ -67,11 +67,11 @@ void MathParserFrm::CreateGUIControls()
 	//Add the custom code before or after the blocks
 	////GUI Items Creation Start
 
-	wxValueStep = new wxTextCtrl(this, ID_WXVALUESTEP, wxT("1.0"), wxPoint(104, 88), wxSize(54, 24), 0, wxDefaultValidator, wxT("wxValueStep"));
+	wxValueStep = new wxTextCtrl(this, ID_WXVALUESTEP, wxT("0.1"), wxPoint(104, 88), wxSize(54, 24), 0, wxDefaultValidator, wxT("wxValueStep"));
 
-	wxMaxValue = new wxTextCtrl(this, ID_WXMAXVALUE, wxT("20.0"), wxPoint(104, 64), wxSize(54, 24), 0, wxDefaultValidator, wxT("wxMaxValue"));
+	wxMaxValue = new wxTextCtrl(this, ID_WXMAXVALUE, wxT("10"), wxPoint(104, 64), wxSize(54, 24), 0, wxDefaultValidator, wxT("wxMaxValue"));
 
-	wxMinValue = new wxTextCtrl(this, ID_WXMINVALUE, wxT("0.0"), wxPoint(104, 40), wxSize(54, 24), 0, wxDefaultValidator, wxT("wxMinValue"));
+	wxMinValue = new wxTextCtrl(this, ID_WXMINVALUE, wxT("0.1"), wxPoint(104, 40), wxSize(54, 24), 0, wxDefaultValidator, wxT("wxMinValue"));
 
 	WxStaticText4 = new wxStaticText(this, ID_WXSTATICTEXT4, wxT("Formel"), wxPoint(8, 8), wxDefaultSize, 0, wxT("WxStaticText4"));
 
@@ -81,12 +81,7 @@ void MathParserFrm::CreateGUIControls()
 
 	WxStaticText1 = new wxStaticText(this, ID_WXSTATICTEXT1, wxT("Minimum Value"), wxPoint(8, 40), wxDefaultSize, 0, wxT("WxStaticText1"));
 
-	WxMemo1 = new wxTextCtrl(this, ID_WXMEMO1, wxEmptyString, wxPoint(8, 120), wxSize(150, 248), wxTE_MULTILINE, wxDefaultValidator, wxT("WxMemo1"));
-	WxMemo1->SetMaxLength(0);
-	WxMemo1->SetFocus();
-	WxMemo1->SetInsertionPointEnd();
-
-	WxEdit1 = new wxTextCtrl(this, ID_WXEDIT1, wxT("1+log(cos(x),7)*2"), wxPoint(68, 8), wxSize(340, 24), 0, wxDefaultValidator, wxT("WxEdit1"));
+	WxEdit1 = new wxTextCtrl(this, ID_WXEDIT1, wxT("1+cos(log(x,7))*2"), wxPoint(68, 8), wxSize(340, 24), 0, wxDefaultValidator, wxT("WxEdit1"));
 
 	WxButton1 = new wxButton(this, ID_WXBUTTON1, wxT("Berechnen"), wxPoint(416, 8), wxSize(80, 24), 0, wxDefaultValidator, wxT("WxButton1"));
 
@@ -97,7 +92,6 @@ void MathParserFrm::CreateGUIControls()
 	
 	////GUI Items Creation End
 	
-	WxMemo1->SetEditable(false);
     dc = new wxClientDC(this);
 }
 
@@ -111,8 +105,6 @@ void MathParserFrm::OnClose(wxCloseEvent& event)
  */
 void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 {
-	WxMemo1->SetEditable(false);
-	WxMemo1->SetValue("");
 	dc->Clear();
 	
 	// read the WxEdit1 field
@@ -132,7 +124,6 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 	std::istringstream minValueC(valueStr);
 	if (!(minValueC >> minValue)) {
         calc = false;
-	    (*WxMemo1) << "Minimum value is no double number!\n";
     }
     delete[] valueStr;
 	wstr = wxMaxValue->GetValue();
@@ -141,7 +132,6 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 	std::istringstream maxValueC(valueStr);
 	if (!(maxValueC >> maxValue)) {
         calc = false;
-	    (*WxMemo1) << "Maximum value is no double number!\n";
     }
     delete[] valueStr;
 	wstr = wxValueStep->GetValue();
@@ -150,7 +140,6 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 	std::istringstream ValueStepC(valueStr);
 	if (!(ValueStepC >> ValueStep)) {
         calc = false;
-	    (*WxMemo1) << "Value step is no double number!\n";
     }
     delete[] valueStr;
 	
@@ -169,7 +158,6 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
         for(int i = 0; i < StepNbrs; i = i++) {
             points[i].x = minValue + i*ValueStep;
             points[i].y = parser->evaluate(points[i].x);
-            (*WxMemo1) << "f(" << points[i].x << ")=" << points[i].y << "\n";
         }
         
         // draw min and max values
