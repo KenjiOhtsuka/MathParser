@@ -1,3 +1,10 @@
+///-----------------------------------------------------------------
+///
+/// @file      BasicOperations.h
+/// @author    Sandro Steffen
+///
+///------------------------------------------------------------------
+
 #ifndef _BASIC_OPERATIONS_H_
 #define _BASIC_OPERATIONS_H_
 

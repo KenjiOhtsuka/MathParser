@@ -1,3 +1,10 @@
+///-----------------------------------------------------------------
+///
+/// @file      MathParser.cpp
+/// @author    Sandro Steffen
+///
+///------------------------------------------------------------------
+
 #include <stack>
 #include <string>
 
@@ -16,7 +23,7 @@ void MathParser::parse(string data) {
 	MathToken *tok = NULL;
 
 	int index = 0;
-	while (index < (int)data.length()) {
+	while (index < (int) data.length()) {
 
 		// parse special tokens...
 		tok = MathSpecialToken::tryParseSpecialToken(data, index);
@@ -28,12 +35,12 @@ void MathParser::parse(string data) {
 				continue;
 			}
 			if (spez->value == ',') {
-				// pop operators until '(' found...
+				// pop operators until '(' or ',' found...
 				MathToken *xx;
 				do {
 					xx = operatorStack->top();
 					//operatorStack->pop();
-					if (xx->getType() != 5) {
+					if (xx->getType() != MathSpecialToken::TYPE) {
 						operatorStack->pop();
 						expression->push_back(xx);
 					} else {
@@ -42,20 +49,14 @@ void MathParser::parse(string data) {
 
 				} while (true);
 
-				/*
-				 xx = operatorStack->top();
-				 if (((MathOperatorToken*) xx)->isFunction == true) {
-				 operatorStack->pop();
-				 expression->push_back(xx);
-				 }*/
 			}
 			if (spez->value == ')') {
-				// pop operators until '(' found...
+				// pop operators until '(' or ',' found...
 				MathToken *xx;
 				do {
 					xx = operatorStack->top();
 					operatorStack->pop();
-					if (xx->getType() != 5) {
+					if (xx->getType() !=  MathSpecialToken::TYPE) {
 						expression->push_back(xx);
 					} else {
 						break;
@@ -92,15 +93,21 @@ void MathParser::parse(string data) {
 
 				while (operatorStack->size() > 0) {
 
-					MathOperatorToken *onStack =
-							(MathOperatorToken*) operatorStack->top();
+					MathToken *onStackTemp = operatorStack->top();
+					if (onStackTemp->getType() == MathOperatorToken::TYPE) {
+						MathOperatorToken *onStack =
+								(MathOperatorToken*) operatorStack->top();
 
-					if (MathOperatorToken::isPrecendent(
-							(MathOperatorToken*) tok, onStack) == false) {
-						operatorStack->pop();
-						expression->push_back(onStack);
-					} else
+						if (MathOperatorToken::isPrecendent(
+								(MathOperatorToken*) tok, onStack) == false) {
+							operatorStack->pop();
+							expression->push_back(onStack);
+						} else
+							break;
+					} else {
 						break;
+					}
+
 				}
 				operatorStack->push(tok);
 				continue;
