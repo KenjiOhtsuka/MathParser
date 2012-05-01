@@ -1,7 +1,7 @@
 # Project: MathParser
 # Compiler: Default GCC compiler
 # Compiler Type: MingW 3
-# Makefile created by wxDev-C++ IDE 7.4.2.551 on 30.04.12 13:12
+# Makefile created by wxDev-C++ IDE 7.4.2.551 on 01.05.12 11:00
 
 WXLIBNAME = wxmsw29u
 CPP       = g++.exe
@@ -36,31 +36,31 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(LINK) $(LINKOBJ) -o "$(BIN)" $(LIBS) 
 
-Objects/MingW/MathParser.o: $(GLOBALDEPS) Source/MathParser.cpp Source/Tokens/MathNumberToken.h Source/MathToken.h Source/Tokens/MathOperatorToken.h Source/MathToken.h Source/Tokens/MathSpecialToken.h Source/MathToken.h Source/MathParser.h Source/MathToken.h
+Objects/MingW/MathParser.o: $(GLOBALDEPS) Source/MathParser.cpp
 	$(CPP) -c Source/MathParser.cpp -o Objects/MingW/MathParser.o $(CXXFLAGS)
 
-Objects/MingW/MathParserApp.o: $(GLOBALDEPS) Source/MathParserApp.cpp Source/MathParserApp.h Source/MathParserFrm.h
+Objects/MingW/MathParserApp.o: $(GLOBALDEPS) Source/MathParserApp.cpp
 	$(CPP) -c Source/MathParserApp.cpp -o Objects/MingW/MathParserApp.o $(CXXFLAGS)
 
-Objects/MingW/MathParserFrm.o: $(GLOBALDEPS) Source/MathParserFrm.cpp Source/MathParserFrm.h Source/MathParser.h Source/MathToken.h Source/array.h Source/xy_T.h Source/xy_T.h
+Objects/MingW/MathParserFrm.o: $(GLOBALDEPS) Source/MathParserFrm.cpp
 	$(CPP) -c Source/MathParserFrm.cpp -o Objects/MingW/MathParserFrm.o $(CXXFLAGS)
 
-Objects/MingW/MathNumberToken.o: $(GLOBALDEPS) Source/Tokens/MathNumberToken.cpp Source/Tokens/MathNumberToken.h Source/MathToken.h
+Objects/MingW/MathNumberToken.o: $(GLOBALDEPS) Source/Tokens/MathNumberToken.cpp
 	$(CPP) -c Source/Tokens/MathNumberToken.cpp -o Objects/MingW/MathNumberToken.o $(CXXFLAGS)
 
-Objects/MingW/MathOperatorToken.o: $(GLOBALDEPS) Source/Tokens/MathOperatorToken.cpp Source/Operations/BasicOperations.h Source/Operations/LogOperations.h Source/Operations/TrigOperations.h Source/Tokens/MathOperatorToken.h Source/MathToken.h
+Objects/MingW/MathOperatorToken.o: $(GLOBALDEPS) Source/Tokens/MathOperatorToken.cpp
 	$(CPP) -c Source/Tokens/MathOperatorToken.cpp -o Objects/MingW/MathOperatorToken.o $(CXXFLAGS)
 
-Objects/MingW/MathSpecialToken.o: $(GLOBALDEPS) Source/Tokens/MathSpecialToken.cpp Source/Tokens/MathSpecialToken.h Source/MathToken.h
+Objects/MingW/MathSpecialToken.o: $(GLOBALDEPS) Source/Tokens/MathSpecialToken.cpp
 	$(CPP) -c Source/Tokens/MathSpecialToken.cpp -o Objects/MingW/MathSpecialToken.o $(CXXFLAGS)
 
-Objects/MingW/BasicOperations.o: $(GLOBALDEPS) Source/Operations/BasicOperations.cpp Source/Operations/BasicOperations.h
+Objects/MingW/BasicOperations.o: $(GLOBALDEPS) Source/Operations/BasicOperations.cpp
 	$(CPP) -c Source/Operations/BasicOperations.cpp -o Objects/MingW/BasicOperations.o $(CXXFLAGS)
 
-Objects/MingW/LogOperations.o: $(GLOBALDEPS) Source/Operations/LogOperations.cpp Source/Operations/LogOperations.h
+Objects/MingW/LogOperations.o: $(GLOBALDEPS) Source/Operations/LogOperations.cpp
 	$(CPP) -c Source/Operations/LogOperations.cpp -o Objects/MingW/LogOperations.o $(CXXFLAGS)
 
-Objects/MingW/TrigOperations.o: $(GLOBALDEPS) Source/Operations/TrigOperations.cpp Source/Operations/TrigOperations.h
+Objects/MingW/TrigOperations.o: $(GLOBALDEPS) Source/Operations/TrigOperations.cpp
 	$(CPP) -c Source/Operations/TrigOperations.cpp -o Objects/MingW/TrigOperations.o $(CXXFLAGS)
 
 Objects/MingW/MathParser_private.res: Objects/MingW/MathParser_private.rc Source/MathParserApp.rc 
