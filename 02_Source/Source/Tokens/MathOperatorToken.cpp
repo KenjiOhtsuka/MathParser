@@ -1,3 +1,10 @@
+///-----------------------------------------------------------------
+///
+/// @file      MathOperatorToken.cpp
+/// @author    Sandro Steffen
+///
+///------------------------------------------------------------------
+
 #include <string>
 #include "..\Operations\BasicOperations.h"
 #include "..\Operations\LogOperations.h"

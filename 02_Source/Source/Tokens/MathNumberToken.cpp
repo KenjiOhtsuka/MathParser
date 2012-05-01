@@ -1,3 +1,10 @@
+///-----------------------------------------------------------------
+///
+/// @file      MathNumberToken.cpp
+/// @author    Sandro Steffen
+///
+///------------------------------------------------------------------
+
 #include <cstdlib>
 #include <string>
 #include "MathNumberToken.h"
@@ -13,8 +20,6 @@ MathNumberToken::MathNumberToken(double value) {
 }
 
 MathNumberToken* MathNumberToken::tryParseNumberToken(string data, int& index) {
-
-
 
 	string temp("");
 	while (((data[index] >= '0') && (data[index] <= '9'))

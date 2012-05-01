@@ -1,9 +1,15 @@
+///-----------------------------------------------------------------
+///
+/// @file      MathSpecialToken.cpp
+/// @author    Sandro Steffen
+///
+///------------------------------------------------------------------
 
 #include "MathSpecialToken.h"
 
 int MathSpecialToken::getType()
 {
-	return 5;
+	return MathSpecialToken::TYPE;
 }
 
 MathSpecialToken* MathSpecialToken::tryParseSpecialToken(string data, int& index) {

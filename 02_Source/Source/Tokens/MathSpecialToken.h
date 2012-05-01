@@ -1,3 +1,10 @@
+///-----------------------------------------------------------------
+///
+/// @file      MathSpecialToken.h
+/// @author    Sandro Steffen
+///
+///------------------------------------------------------------------
+
 #ifndef _MATH_SPECIAL_TOKEN_H_
 #define _MATH_SPECIAL_TOKEN_H_
 
@@ -8,9 +15,10 @@ class MathSpecialToken: public MathToken {
 
 private:
 public:
-	int getType();
+	static const int TYPE = 3;
 	char value;
 
+	int getType();
 	static MathSpecialToken* tryParseSpecialToken(string, int&);
 
 };

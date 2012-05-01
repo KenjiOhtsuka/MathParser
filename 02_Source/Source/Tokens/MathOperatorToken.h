@@ -1,3 +1,10 @@
+///-----------------------------------------------------------------
+///
+/// @file      MathOperatorToken.h
+/// @author    Sandro Steffen
+///
+///------------------------------------------------------------------
+
 #ifndef _MATH_OPERATOR_TOKEN_H_
 #define _MATH_OPERATOR_TOKEN_H_
 
@@ -21,12 +28,11 @@ private:
 public:
 	static const int TYPE = 2;
 
+	bool isFunction;
 	int params;
 	double (*evaluate)(double*, int);
 
 	int getType();
-	bool isFunction;
-
 	static MathOperatorToken* tryParseOperatorToken(string, int&);
 	static bool isPrecendent(MathOperatorToken*, MathOperatorToken*);
 };

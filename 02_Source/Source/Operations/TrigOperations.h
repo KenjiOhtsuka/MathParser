@@ -1,3 +1,10 @@
+///-----------------------------------------------------------------
+///
+/// @file      TrigOperations.h
+/// @author    Sandro Steffen
+///
+///------------------------------------------------------------------
+
 #ifndef _TRIG_OPERATIONS_H_
 #define _TRIG_OPERATIONS_H_
 
