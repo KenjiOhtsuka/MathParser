@@ -1,0 +1,67 @@
+# Project: MathParser
+# Compiler: Default GCC compiler
+# Compiler Type: MingW 3
+# Makefile created by wxDev-C++ IDE 7.4.2.551 on 01.05.12 14:48
+
+WXLIBNAME = wxmsw29u
+CPP       = g++.exe
+CC        = gcc.exe
+WINDRES   = "windres.exe"
+OBJ       = Objects/MingW/MathParser.o Objects/MingW/MathParserApp.o Objects/MingW/MathParserFrm.o Objects/MingW/MathNumberToken.o Objects/MingW/MathOperatorToken.o Objects/MingW/MathSpecialToken.o Objects/MingW/BasicOperations.o Objects/MingW/LogOperations.o Objects/MingW/TrigOperations.o Objects/MingW/MathParser_private.res
+LINKOBJ   = "Objects/MingW/MathParser.o" "Objects/MingW/MathParserApp.o" "Objects/MingW/MathParserFrm.o" "Objects/MingW/MathNumberToken.o" "Objects/MingW/MathOperatorToken.o" "Objects/MingW/MathSpecialToken.o" "Objects/MingW/BasicOperations.o" "Objects/MingW/LogOperations.o" "Objects/MingW/TrigOperations.o" Objects/MingW/MathParser_private.res
+LIBS      = -L"C:/Dev-Cpp/lib/wx/gcc_lib" -L"C:/Dev-Cpp/lib" -L"C:/Dev-Cpp/MinGW32/lib" -mwindows -l$(WXLIBNAME) -l$(WXLIBNAME)_gl -lwxscintilla -lwxtiff -lwxjpeg -lwxpng -lwxzlib -lwxregexu -lwxexpat -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 -lodbc32 -lopengl32  
+INCS      = -I"C:/Dev-Cpp/MinGW32/include"
+CXXINCS   = -I"C:/Dev-Cpp/MinGW32/include" -I"C:/Dev-Cpp/" -I"C:/Dev-Cpp/include/common"
+RCINCS    = --include-dir "C:/Dev-Cpp/include/common"
+BIN       = Output/MingW/MathParser.exe
+DEFINES   = -D__WXMSW__ -D__GNUWIN32__ -D_UNICODE
+CXXFLAGS  = $(CXXINCS) $(DEFINES)  
+CFLAGS    = $(INCS) $(DEFINES)  
+GPROF     = gprof.exe
+ifeq ($(OS),Windows_NT)
+   RM = del /Q
+   FixPath = $(subst /,\,$1)
+else
+   RM = rm -f
+   FixPath = $1
+endif
+LINK      = g++.exe
+
+.PHONY: all all-before all-after clean clean-custom
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	$(RM) $(call FixPath,$(LINKOBJ)) "$(call FixPath,$(BIN))"
+
+$(BIN): $(OBJ)
+	$(LINK) $(LINKOBJ) -o "$(BIN)" $(LIBS) 
+
+Objects/MingW/MathParser.o: $(GLOBALDEPS) Source/MathParser.cpp Source/Tokens/MathNumberToken.h Source/MathToken.h Source/Tokens/MathOperatorToken.h Source/MathToken.h Source/Tokens/MathSpecialToken.h Source/MathToken.h Source/MathParser.h Source/MathToken.h
+	$(CPP) -c Source/MathParser.cpp -o Objects/MingW/MathParser.o $(CXXFLAGS)
+
+Objects/MingW/MathParserApp.o: $(GLOBALDEPS) Source/MathParserApp.cpp Source/MathParserApp.h Source/MathParserFrm.h
+	$(CPP) -c Source/MathParserApp.cpp -o Objects/MingW/MathParserApp.o $(CXXFLAGS)
+
+Objects/MingW/MathParserFrm.o: $(GLOBALDEPS) Source/MathParserFrm.cpp Source/MathParserFrm.h Source/MathParser.h Source/MathToken.h Source/array.h Source/xy_T.h Source/xy_T.h
+	$(CPP) -c Source/MathParserFrm.cpp -o Objects/MingW/MathParserFrm.o $(CXXFLAGS)
+
+Objects/MingW/MathNumberToken.o: $(GLOBALDEPS) Source/Tokens/MathNumberToken.cpp Source/Tokens/MathNumberToken.h Source/MathToken.h
+	$(CPP) -c Source/Tokens/MathNumberToken.cpp -o Objects/MingW/MathNumberToken.o $(CXXFLAGS)
+
+Objects/MingW/MathOperatorToken.o: $(GLOBALDEPS) Source/Tokens/MathOperatorToken.cpp Source/Operations/BasicOperations.h Source/Operations/LogOperations.h Source/Operations/TrigOperations.h Source/Tokens/MathOperatorToken.h Source/MathToken.h
+	$(CPP) -c Source/Tokens/MathOperatorToken.cpp -o Objects/MingW/MathOperatorToken.o $(CXXFLAGS)
+
+Objects/MingW/MathSpecialToken.o: $(GLOBALDEPS) Source/Tokens/MathSpecialToken.cpp Source/Tokens/MathSpecialToken.h Source/MathToken.h
+	$(CPP) -c Source/Tokens/MathSpecialToken.cpp -o Objects/MingW/MathSpecialToken.o $(CXXFLAGS)
+
+Objects/MingW/BasicOperations.o: $(GLOBALDEPS) Source/Operations/BasicOperations.cpp Source/Operations/BasicOperations.h
+	$(CPP) -c Source/Operations/BasicOperations.cpp -o Objects/MingW/BasicOperations.o $(CXXFLAGS)
+
+Objects/MingW/LogOperations.o: $(GLOBALDEPS) Source/Operations/LogOperations.cpp Source/Operations/LogOperations.h
+	$(CPP) -c Source/Operations/LogOperations.cpp -o Objects/MingW/LogOperations.o $(CXXFLAGS)
+
+Objects/MingW/TrigOperations.o: $(GLOBALDEPS) Source/Operations/TrigOperations.cpp Source/Operations/TrigOperations.h
+	$(CPP) -c Source/Operations/TrigOperations.cpp -o Objects/MingW/TrigOperations.o $(CXXFLAGS)
+
+Objects/MingW/MathParser_private.res: Objects/MingW/MathParser_private.rc Source/MathParserApp.rc 
+	$(WINDRES) --input-format=rc -o Objects/MingW/MathParser_private.res $(RCINCS) Objects/MingW/MATHPA~1.RC -O coff
