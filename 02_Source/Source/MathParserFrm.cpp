@@ -160,6 +160,7 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
             points[i].x = minValue + i*ValueStep;           // set the x value of this step
             points[i].y = parser->evaluate(points[i].x);    // and calculate the y value from the x value
         }
+        delete parser;                                      // deallocate memory of parser
         
         // draw min and max values
         char temp[100];
@@ -181,5 +182,6 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
              dc->DrawLine(GRAPH_X+(i-1)*StepWidth, GRAPH_Y+GRAPH_HEIGHT-(points[i-1].y-min)*StepHeight,
                     GRAPH_X+i*StepWidth, GRAPH_Y+GRAPH_HEIGHT-(points[i].y-min)*StepHeight);
         }
+        points.~PointArray();                               // deallocate memory of points array
     }
 }
