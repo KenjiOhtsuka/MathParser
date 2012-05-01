@@ -109,62 +109,63 @@ void MathParserFrm::WxButton1Click(wxCommandEvent& event)
 	
 	// read the WxEdit1 field
 	char * formelPtr;
-	wxString wstr = WxEdit1->GetValue();
-	formelPtr = new char[wstr.Length()+1];
+	wxString wstr = WxEdit1->GetValue();       // read the string into a wxString
+	formelPtr = new char[wstr.Length()+1];     // convert the string to char
 	strcpy(formelPtr, wstr.c_str());
-	std::string formelStr(formelPtr);
+	std::string formelStr(formelPtr);          // and convert it to std::string ;-)
 	
 	// get min, max and step values
 	bool calc = true;
 	char * valueStr;
 	double minValue, maxValue, ValueStep;
-	wstr = wxMinValue->GetValue();
-	valueStr = new char[wstr.Length()+1];
+	wstr = wxMinValue->GetValue();             // get the string of the min value
+	valueStr = new char[wstr.Length()+1];      // convert to char
 	strcpy(valueStr, wstr.c_str());
-	std::istringstream minValueC(valueStr);
-	if (!(minValueC >> minValue)) {
-        calc = false;
+	std::istringstream minValueC(valueStr);    // convert it to istringstream for convertion to double
+	if (!(minValueC >> minValue)) {            // convert it to double, if false
+        calc = false;                          // do not calculate
     }
-    delete[] valueStr;
-	wstr = wxMaxValue->GetValue();
-	valueStr = new char[wstr.Length()+1];
+    delete[] valueStr;                         // deallocate ram
+    
+	wstr = wxMaxValue->GetValue();             // get the string of the max value
+	valueStr = new char[wstr.Length()+1];      // convert to char
 	strcpy(valueStr, wstr.c_str());
-	std::istringstream maxValueC(valueStr);
-	if (!(maxValueC >> maxValue)) {
-        calc = false;
+	std::istringstream maxValueC(valueStr);    // convert it to istringstream for convertion to double
+	if (!(maxValueC >> maxValue)) {            // convert it to double, if false
+        calc = false;                          // do not calculate
     }
-    delete[] valueStr;
-	wstr = wxValueStep->GetValue();
-	valueStr = new char[wstr.Length()+1];
+    delete[] valueStr;                         // deallocate ram
+	wstr = wxValueStep->GetValue();            // get the string of the value step
+	valueStr = new char[wstr.Length()+1];      // convert to char
 	strcpy(valueStr, wstr.c_str());
-	std::istringstream ValueStepC(valueStr);
-	if (!(ValueStepC >> ValueStep)) {
-        calc = false;
+	std::istringstream ValueStepC(valueStr);   // convert it to istringstream for convertion to double
+	if (!(ValueStepC >> ValueStep)) {          // convert it to double, if false
+        calc = false;                          // do not calculate
     }
-    delete[] valueStr;
+    delete[] valueStr;                         // deallocate ram
 	
-	if (calc) { // only calc if no errors !!
+	if (calc) {                                // only calc if no errors !!
 	    // calc
-	    MathParser *parser = new MathParser();
-	    parser->parse(formelStr);
+	    MathParser *parser = new MathParser(); // create object of parser
+	    parser->parse(formelStr);              // parse the string
 	   
 	    // draw the rectangle around the graph panel
         dc->SetPen(wxPen(wxColor(0,0,0), 1)); // black line, 1 pixels thick
         dc->DrawRectangle(GRAPH_X, GRAPH_Y, GRAPH_WIDTH, GRAPH_HEIGHT);
 	   
         // evaluate points
-        int StepNbrs = (maxValue-minValue)/ValueStep + 1;
-            PointArray points(StepNbrs);
-        for(int i = 0; i < StepNbrs; i = i++) {
-            points[i].x = minValue + i*ValueStep;
-            points[i].y = parser->evaluate(points[i].x);
+        int StepNbrs = (maxValue-minValue)/ValueStep + 1;   // calculate the number of steps
+        PointArray points(StepNbrs);                        // create a array of points
+        for(int i = 0; i < StepNbrs; i = i++) {             // for each step
+            points[i].x = minValue + i*ValueStep;           // set the x value of this step
+            points[i].y = parser->evaluate(points[i].x);    // and calculate the y value from the x value
         }
         
         // draw min and max values
         char temp[100];
-	    double min = points.min_y();
-	    double max = points.max_y();
-	    sprintf(temp, "%.3f", points.min_x());
+	    double min = points.min_y();                        // save the least value of the y axis
+	    double max = points.max_y();                        // save the biggest value of the y axis
+	    sprintf(temp, "%.3f", points.min_x());              // print the values to the axis
 	    dc->DrawText(temp, TEXT_X_L, TEXT_X_Y);
 	    sprintf(temp, "%.3f", points.max_x());
 	    dc->DrawText(temp, TEXT_X_R, TEXT_X_Y);
