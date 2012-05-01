@@ -1,14 +1,14 @@
 [Project]
 FileName=MathParser.dev
 Name=MathParser
-UnitCount=21
+UnitCount=23
 PchHead=-1
 PchSource=-1
 Ver=3
 IsCpp=1
 ProfilesCount=2
 ProfileIndex=0
-Folders=Frame,MainApp,Operations,Parser,Tokens
+Folders=Frame,Helpers,MainApp,Operations,Parser,Tokens
 
 [Unit3]
 FileName=Source\MathParserApp.cpp
@@ -296,9 +296,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit22]
-FileName=Source\xy_T.h
+FileName=Source\array.h
 CompileCpp=1
-Folder=MainApp
+Folder=Helpers
 Compile=1
 Link=1
 Priority=1000
@@ -306,9 +306,9 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit23]
-FileName=Source\array.h
+FileName=Source\xy_T.h
 CompileCpp=1
-Folder=MainApp
+Folder=Helpers
 Compile=1
 Link=1
 Priority=1000

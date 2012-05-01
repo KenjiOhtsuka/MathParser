@@ -4,7 +4,7 @@
 /// @author    ruett1
 /// Created:   24.04.2012 12:17:13
 /// @section   DESCRIPTION
-///            Implements a point array
+///            Implemention of a xy point array
 ///
 ///------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ class PointArray {
 PointArray::PointArray(int size) {              // constructor
     if (size > 0) {
         mySize = size;
-        myData = new xy_T[size];
+        myData = new xy_T[size];                // alloc memory for the array
     }
 }
 
